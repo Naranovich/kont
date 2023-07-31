@@ -1,0 +1,83 @@
+root@nikita-VirtualBox:/home/nikita# sudo cat /var/lib/lxc/test1/config
+# Template used to create this container: /usr/share/lxc/templates/lxc-ubuntu
+# Parameters passed to the template:
+# For additional config options, please look at lxc.container.conf(5)
+
+# Uncomment the following line to support nesting containers:
+#lxc.include = /usr/share/lxc/config/nesting.conf
+# (Be aware this has security implications)
+
+
+# Common configuration
+lxc.include = /usr/share/lxc/config/ubuntu.common.conf
+
+# Container specific configuration
+lxc.rootfs.path = dir:/var/lib/lxc/test1/rootfs
+lxc.uts.name = test1
+lxc.arch = amd64
+
+# Network configuration
+root@nikita-VirtualBox:/home/nikita# nano
+root@nikita-VirtualBox:/home/nikita# sudo cat /var/lib/lxc/test1/config
+# Template used to create this container: /usr/share/lxc/templates/lxc-ubuntu
+# Parameters passed to the template:
+# For additional config options, please look at lxc.container.conf(5)
+
+# Uncomment the following line to support nesting containers:
+#lxc.include = /usr/share/lxc/config/nesting.conf
+# (Be aware this has security implications)
+
+
+# Common configuration
+lxc.include = /usr/share/lxc/config/ubuntu.common.conf
+
+# Container specific configuration
+lxc.rootfs.path = dir:/var/lib/lxc/test1/rootfs
+lxc.uts.name = test1
+lxc.arch = amd64
+
+# Network configuration
+root@nikita-VirtualBox:/home/nikita# sudo cat /var/lib/lxc/test1/config nano
+# Template used to create this container: /usr/share/lxc/templates/lxc-ubuntu
+# Parameters passed to the template:
+# For additional config options, please look at lxc.container.conf(5)
+
+# Uncomment the following line to support nesting containers:
+#lxc.include = /usr/share/lxc/config/nesting.conf
+# (Be aware this has security implications)
+
+
+# Common configuration
+lxc.include = /usr/share/lxc/config/ubuntu.common.conf
+
+# Container specific configuration
+lxc.rootfs.path = dir:/var/lib/lxc/test1/rootfs
+lxc.uts.name = test1
+lxc.arch = amd64
+
+# Network configuration
+cat: nano: Нет такого файла или каталога
+root@nikita-VirtualBox:/home/nikita# nano /var/lib/lxc/test1/config nano
+root@nikita-VirtualBox:/home/nikita# nano /var/lib/lxc/test1/config nano
+root@nikita-VirtualBox:/home/nikita# sudo cat /sys/fs/cgroup/lxc.payload.test1/memory.max
+max
+root@nikita-VirtualBox:/home/nikita# nano /var/lib/lxc/test1/config nano
+root@nikita-VirtualBox:/home/nikita# sudo cat /sys/fs/cgroup/lxc.payload.test1/memory.max
+max
+root@nikita-VirtualBox:/home/nikita# sudo lxc-ls -f
+NAME  STATE   AUTOSTART GROUPS IPV4 IPV6 UNPRIVILEGED 
+test1 RUNNING 0         -      -    -    false        
+root@nikita-VirtualBox:/home/nikita# nano sudo cat  /var/lib/lxc/test1/config 
+root@nikita-VirtualBox:/home/nikita# sudo cat /sys/fs/cgroup/lxc.payload.test1/memory.max
+max
+root@nikita-VirtualBox:/home/nikita# nano   /var/lib/lxc/test1/config 
+root@nikita-VirtualBox:/home/nikita# sudo cat /sys/fs/cgroup/lxc.payload.test1/memory.max
+max
+root@nikita-VirtualBox:/home/nikita# nano   /var/lib/lxc/test1/config 
+root@nikita-VirtualBox:/home/nikita# lxc-stop -n test1
+root@nikita-VirtualBox:/home/nikita# lxc-start -d -n test1
+root@nikita-VirtualBox:/home/nikita# sudo lxc-attach -n test1
+root@test1:/# exit
+exit
+root@nikita-VirtualBox:/home/nikita# sudo cat /sys/fs/cgroup/lxc.payload.test1/memory.max
+268435456
