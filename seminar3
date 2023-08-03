@@ -1,0 +1,174 @@
+root@nikita-VirtualBox:/home/nikita# sudo rm -rf mydb/
+root@nikita-VirtualBox:/home/nikita# mkdir mydb
+root@nikita-VirtualBox:/home/nikita# ls -l
+итого 48
+drwxrwxr-x 6 nikita nikita 4096 июл 25 23:13  GB
+drwxr-xr-x 2 root   root   4096 авг  4 00:43  mydb
+drwxrwxr-x 5 nikita nikita 4096 июл 25 23:01  newroot
+drwx------ 5 nikita nikita 4096 июл 31 11:19  snap
+drwxr-xr-x 2 nikita nikita 4096 мая 31 13:19  Видео
+drwxr-xr-x 2 nikita nikita 4096 мая 31 13:19  Документы
+drwxr-xr-x 2 nikita nikita 4096 мая 31 13:19  Загрузки
+drwxr-xr-x 2 nikita nikita 4096 мая 31 13:19  Изображения
+drwxr-xr-x 2 nikita nikita 4096 мая 31 13:19  Музыка
+drwxr-xr-x 2 nikita nikita 4096 мая 31 13:19  Общедоступные
+drwxr-xr-x 2 nikita nikita 4096 мая 31 13:19 'Рабочий стол'
+drwxr-xr-x 2 nikita nikita 4096 мая 31 13:19  Шаблоны
+root@nikita-VirtualBox:/home/nikita# docker run --name my-maria-db -e MARIADB_ROOT_PASSWORD=test123 -v ./mydb:/var/lib/mysql -d mariadb:10.10.2
+Unable to find image 'mariadb:10.10.2' locally
+10.10.2: Pulling from library/mariadb
+10ac4908093d: Pull complete 
+44779101e748: Pull complete 
+a721db3e3f3d: Pull complete 
+1850a929b84a: Pull complete 
+397a918c7da3: Pull complete 
+806be17e856d: Pull complete 
+634de6c90876: Pull complete 
+cd00854cfb1a: Pull complete 
+Digest: sha256:bfc25a68e113de43d0d112f5a7126df8e278579c3224e3923359e1c1d8d5ce6e
+Status: Downloaded newer image for mariadb:10.10.2
+c3632d99c2e2d047bae71733e66e9ebafbbd47127ee53a0c85055f289f9a94d3
+root@nikita-VirtualBox:/home/nikita# docker ps
+CONTAINER ID   IMAGE             COMMAND                  CREATED          STATUS          PORTS      NAMES
+c3632d99c2e2   mariadb:10.10.2   "docker-entrypoint.s…"   20 seconds ago   Up 19 seconds   3306/tcp   my-maria-db
+root@nikita-VirtualBox:/home/nikita# docker exec -it c3632d99c2e2 bash
+root@c3632d99c2e2:/# top
+
+
+
+
+
+top - 21:51:28 up  1:17,  0 users,  load average: 0.31, 0.43, 0.28
+Tasks:   3 total,   1 running,   2 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  1.6 us,  0.7 sy,  0.0 ni, 97.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   3921.6 total,    109.6 free,   2179.2 used,   1632.8 buff/cache
+MiB Swap:   2630.0 total,   2611.9 free,     18.1 used.   1429.6 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                                                          
+      1 mysql     20   0 1488648  99916  23104 S   0.0   2.5   0:00.27 mariadbd                                                                                         
+    152 root      20   0    5044   3920   3328 S   0.0   0.1   0:00.13 bash                                                                                             
+    160 root      20   0    7752   3536   2960 R   0.0   0.1   0:00.14 top                                                                                              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+root@c3632d99c2e2:/# mysql -u root -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 3
+Server version: 10.10.2-MariaDB-1:10.10.2+maria~ubu2204 mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [(none)]> CREATE DATABASE GeekBrains;
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| GeekBrains         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.000 sec)
+
+MariaDB [(none)]> exit
+Bye
+root@c3632d99c2e2:/# ls -l
+total 56
+lrwxrwxrwx   1 root root    7 Jan 26  2023 bin -> usr/bin
+drwxr-xr-x   2 root root 4096 Apr 18  2022 boot
+drwxr-xr-x   5 root root  340 Aug  3 21:49 dev
+drwxr-xr-x   2 root root 4096 Jan 31  2023 docker-entrypoint-initdb.d
+drwxr-xr-x   1 root root 4096 Aug  3 21:49 etc
+drwxr-xr-x   2 root root 4096 Apr 18  2022 home
+lrwxrwxrwx   1 root root    7 Jan 26  2023 lib -> usr/lib
+lrwxrwxrwx   1 root root    9 Jan 26  2023 lib32 -> usr/lib32
+lrwxrwxrwx   1 root root    9 Jan 26  2023 lib64 -> usr/lib64
+lrwxrwxrwx   1 root root   10 Jan 26  2023 libx32 -> usr/libx32
+drwxr-xr-x   2 root root 4096 Jan 26  2023 media
+drwxr-xr-x   2 root root 4096 Jan 26  2023 mnt
+drwxr-xr-x   2 root root 4096 Jan 26  2023 opt
+dr-xr-xr-x 363 root root    0 Aug  3 21:49 proc
+drwx------   1 root root 4096 Aug  3 21:53 root
+drwxr-xr-x   1 root root 4096 Jan 31  2023 run
+lrwxrwxrwx   1 root root    8 Jan 26  2023 sbin -> usr/sbin
+drwxr-xr-x   2 root root 4096 Jan 26  2023 srv
+dr-xr-xr-x  13 root root    0 Aug  3 21:49 sys
+drwxrwxrwt   1 root root 4096 Aug  3 21:49 tmp
+drwxr-xr-x   1 root root 4096 Jan 26  2023 usr
+drwxr-xr-x   1 root root 4096 Jan 26  2023 var
+root@c3632d99c2e2:/# cd var/lib/mysql
+root@c3632d99c2e2:/var/lib/mysql# ls -l
+total 139376
+drwx------ 2 mysql mysql      4096 Aug  3 21:53 GeekBrains
+-rw-rw---- 1 mysql mysql  16842752 Aug  3 21:49 aria_log.00000001
+-rw-rw---- 1 mysql mysql        52 Aug  3 21:49 aria_log_control
+-rw-rw---- 1 mysql mysql         9 Aug  3 21:49 ddl_recovery.log
+-rw-rw---- 1 mysql mysql       868 Aug  3 21:49 ib_buffer_pool
+-rw-rw---- 1 mysql mysql 100663296 Aug  3 21:51 ib_logfile0
+-rw-rw---- 1 mysql mysql  12582912 Aug  3 21:49 ibdata1
+-rw-rw---- 1 mysql mysql  12582912 Aug  3 21:49 ibtmp1
+-rw-rw---- 1 mysql mysql         0 Aug  3 21:49 multi-master.info
+drwx------ 2 mysql mysql      4096 Aug  3 21:49 mysql
+-rw-r--r-- 1 mysql mysql        15 Aug  3 21:49 mysql_upgrade_info
+drwx------ 2 mysql mysql      4096 Aug  3 21:49 performance_schema
+drwx------ 2 mysql mysql     12288 Aug  3 21:49 sys
+root@c3632d99c2e2:/var/lib/mysql# exit
+exit
+root@nikita-VirtualBox:/home/nikita# ls -l
+итого 48
+drwxrwxr-x 6 nikita nikita 4096 июл 25 23:13  GB
+drwxr-xr-x 6 lxd       999 4096 авг  4 00:53  mydb
+drwxrwxr-x 5 nikita nikita 4096 июл 25 23:01  newroot
+drwx------ 5 nikita nikita 4096 июл 31 11:19  snap
+drwxr-xr-x 2 nikita nikita 4096 мая 31 13:19  Видео
+drwxr-xr-x 2 nikita nikita 4096 мая 31 13:19  Документы
+drwxr-xr-x 2 nikita nikita 4096 мая 31 13:19  Загрузки
+drwxr-xr-x 2 nikita nikita 4096 мая 31 13:19  Изображения
+drwxr-xr-x 2 nikita nikita 4096 мая 31 13:19  Музыка
+drwxr-xr-x 2 nikita nikita 4096 мая 31 13:19  Общедоступные
+drwxr-xr-x 2 nikita nikita 4096 мая 31 13:19 'Рабочий стол'
+drwxr-xr-x 2 nikita nikita 4096 мая 31 13:19  Шаблоны
+root@nikita-VirtualBox:/home/nikita# 
